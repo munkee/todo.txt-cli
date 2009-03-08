@@ -669,7 +669,6 @@ note:  PRIORITY must be anywhere from A to Z."
     cleanup;;
 
 * )
-    usage
     if [ -d "$HOME/.todo.actions.d" ]; then
         if [ -x "$HOME/.todo.actions.d/$action" ]; then
             "$HOME/.todo.actions.d/$action" "$@"
