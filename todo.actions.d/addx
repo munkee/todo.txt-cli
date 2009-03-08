@@ -12,9 +12,9 @@ shift
 
 . $TODOTXT_CFG_FILE
 # call back to the main script to add
-echo $TODOTXT_SH add "$@"
-if $TODOTXT_SH add "$@"; then
+echo $TODO_SH add "$@"
+if $TODO_SH add "$@"; then
     # figure out the line of what we just added, and "do" it
     line=`wc -l "$TODO_FILE" | cut -d' ' -f1`
-    $TODOTXT_SH do "$line"
+    $TODO_SH do "$line"
 fi
