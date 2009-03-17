@@ -9,7 +9,7 @@ Don't modify those lines:
 !!!!!!!!!!!!! WARNING !!!!!!!!!!!!!!
 You've maybe to configure this line according to your setup.
 You've to use a special todo.cfg as it will *DELETE* the files before running the tests!
-    >>> TODO="~/.todo/scripts/todo.sh -d $(pwd)/testsuite.cfg "
+    >>> TODO="todo.sh -d $(pwd)/testsuite.cfg "
 
 Let's clean a bit as it was told to you a second ago.
     >>> bash('rm -f deleteme_*')
