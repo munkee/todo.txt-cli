@@ -434,7 +434,7 @@ _list() {
     }
 
     ## Allow a custom sort, but set a default
-    sort_command=${TODOTXT_SORT_COMMAND:-sort -f -k2}
+    sort_command=${TODOTXT_SORT_COMMAND:-env LC_COLLATE=C sort -f -k2}
 
     ## Figure out how much padding we need to use
     ## We need one level of padding for each power of 10 $LINES uses
