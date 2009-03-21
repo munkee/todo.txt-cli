@@ -433,6 +433,9 @@ _list() {
         filter_command="${filter_command:-}${filter_command:+ | }${post_filter_command:-}"
     }
 
+    ## Allow a custom sort, but set a default
+    sort_command=${TODOTXT_SORT_COMMAND:-sort -f -k2}
+
     ## Figure out how much padding we need to use
     ## We need one level of padding for each power of 10 $LINES uses
     LINES=$( sed -n '$ =' "$src" )
@@ -452,7 +455,7 @@ _list() {
             s/^  /00/;
             s/^ /0/;
           ''' \
-        | sort -f -k2                                           \
+        | ${sort_command}                                       \
         | sed '''
             /^[0-9]\{'$PADDING'\} x /! {
                 s/\(.*(A).*\)/'$PRI_A'\1 '$DEFAULT'/g;
