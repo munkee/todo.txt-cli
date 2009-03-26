@@ -13,7 +13,7 @@ function usage(){
 
 [ "$action" = "usage" ] && usage
 
-. $TODOTXT_CFG_FILE
+. "$TODOTXT_CFG_FILE"
 
 if ! [[ "$1" =~ ^[0-9]+$ ]]; then
     echo "Error! Usage:"
@@ -35,17 +35,17 @@ fi
 # Trying to be smart...
 # on Debian alike:
 if $(which x-www-browser >/dev/null); then
-    exec x-www-browser $URL
+    exec x-www-browser "$URL"
 # if you have git:
 elif [ -x /usr/lib/git-core/git-web--browse ]; then
-    cd /usr/lib/git-core && ./git-web--browse $URL
+    cd /usr/lib/git-core && ./git-web--browse "$URL"
 # last resort, a la mano...
 elif $(which firefox >/dev/null); then
-    exec firefox $URL
+    exec firefox "$URL"
 elif $(which konqueror >/dev/null); then
-    exec konqueror $URL
+    exec konqueror "$URL"
 elif $(which nautilus >/dev/null); then
-    exec nautilus $URL
+    exec nautilus "$URL"
 else
     echo "Sorry I'm giving up, cannot find your browser :-("
 fi

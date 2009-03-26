@@ -14,7 +14,7 @@ shift
   exit
 }
 
-. $TODOTXT_CFG_FILE
+. "$TODOTXT_CFG_FILE"
 
 PRIORITY=false
 DO=false
@@ -28,9 +28,9 @@ elif [ x"$1" = x"x" ]; then
 fi
 
 # call back to the main script to add
-if $TODO_SH command add "$@"; then
+if "$TODO_SH" command add "$@"; then
     # figure out the line of what we just added, and "do" it
     line=`wc -l "$TODO_FILE" | cut -d' ' -f1`
-    [ $PRIORITY != false ] && $TODO_SH command pri "$line" $PRIORITY
-    $DO && $TODO_SH command do "$line"
+    [ $PRIORITY != false ] && "$TODO_SH" command pri "$line" $PRIORITY
+    $DO && "$TODO_SH" command do "$line"
 fi
