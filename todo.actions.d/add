@@ -14,8 +14,6 @@ shift
   exit
 }
 
-. "$TODOTXT_CFG_FILE"
-
 PRIORITY=false
 DO=false
 if [ x"$1" = x"pri" -o x"$1" = x"p" ] && [[ x"$2" = x[a-zA-Z] ]]; then
