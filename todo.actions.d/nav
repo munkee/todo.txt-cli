@@ -52,6 +52,9 @@ elif $(which nautilus >/dev/null 2>&1); then
 # Windowsien?
 elif [ -x "/cygdrive/c/Program Files/Mozilla Firefox/firefox.exe" ]; then
     exec "/cygdrive/c/Program Files/Mozilla Firefox/firefox.exe" "$URL"
+# OS X?
+elif [ -x "/usr/bin/open" ]; then
+    exec "/usr/bin/open" "$URL"
 else
     echo "Sorry I'm giving up, cannot find your browser :-("
     echo "Under cygwin, consider creating a shortcut in the path, like"
