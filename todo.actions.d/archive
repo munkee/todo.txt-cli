@@ -14,8 +14,6 @@ shift
   exit
 }
 
-. "$TODOTXT_CFG_FILE"
-
 KEYWORD=$1
 if [[ "$KEYWORD" =~ ^[0-9]+$ ]]; then
     # we got an ITEM to archive

@@ -13,8 +13,6 @@ function usage(){
 
 [ "$action" = "usage" ] && usage
 
-. "$TODOTXT_CFG_FILE"
-
 if ! [[ "$1" =~ ^[0-9]+$ ]]; then
     echo "Error! Usage:"
     usage
