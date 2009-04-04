@@ -20,7 +20,7 @@ if ! [[ "$1" =~ ^[0-9]+$ ]]; then
     usage
 fi
 
-URL=$(sed "$1!d" "$TODO_FILE"|grep -E -o "(https?|ftp)://[^ ]+")
+URL=$(sed "$1!d" "$TODO_FILE"|grep -E -o "([a-z]*)://[^ ]+")
 if [ "$URL" = "" ]; then
     LINE=$(sed "$1!d" "$TODO_FILE")
     if [ "$LINE" = "" ]; then
