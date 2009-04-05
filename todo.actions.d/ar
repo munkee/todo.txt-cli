@@ -3,4 +3,4 @@
 [ "$1" = "usage" ] && exit 0
 shift
 
-"$TODO_SH" edit "$@"
+"$TODO_SH" archive "$@"
