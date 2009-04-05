@@ -497,9 +497,6 @@ export -f _list
 # == HANDLE ACTION ==
 action=$( printf "%s\n" "$ACTION" | tr 'A-Z' 'a-z' )
 
-## Handling aliases, if any
-eval action=\${TODOTXT_ALIAS_$(echo $action|tr a-z A-Z):-$action}
-
 ## If the first argument is "command", run the rest of the arguments
 ## using todo.sh builtins.
 ## Else, run a actions script with the name of the command if it exists
