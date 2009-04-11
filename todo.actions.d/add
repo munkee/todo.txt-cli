@@ -28,7 +28,7 @@ fi
 # call back to the main script to add
 if "$TODO_SH" command add "$@"; then
     # figure out the line of what we just added, and "do" it
-    line=`wc -l "$TODO_FILE" | cut -d' ' -f1`
+    line=`sed -n '$ =' "$TODO_FILE"`
     [ $PRIORITY != false ] && "$TODO_SH" command pri "$line" $PRIORITY
     $DO && "$TODO_SH" command do "$line"
 fi
