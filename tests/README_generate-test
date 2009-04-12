@@ -1,46 +1,15 @@
 You can generate test scripts from screenshots as following:
 
-generate-test.awk is a AWK script parsing a screenshot and creating an executable bash script
+$ ./testshell.sh
 
-To create the snapshot, change your prompt into something easily parseable:
-$ PS1=">>> "
+You'll be in a special test environment with an empty todo.txt
+and the dates and timestamps will be artificially fixed.
 
-Then simply type your todo.sh commands
-Be careful to start with an empty todo.txt otherwise item numbers won't match
-You can insert comments in your session by starting with a #
+Then the session can be used to make a unit test thanks to test_todo_session,
+see the existing tests as examples.
 
->>> #Adding
->>> todo.sh add test
-TODO: 'test' added on line 1.
->>> #Prioritizing
->>> todo.sh pri 1 a
-1: (A) test
-TODO: 1 prioritized (A).
+Be careful to replace all occurences of the full path to the test directory
+by $HOME as testshell.sh will explain you when you execute it otherwise the
+tests will work properly only on your own computer.
 
-then copy/paste the session in a file, let's say mytests.txt
 Don't use "script" as this would log every keystroke, not only what's visible!!
-
-then generate a script from it:
-
-$ cat mytests.txt | ./generate-test.awk > mytests.sh
-
-Script which you can run:
-
-$ bash mytests.sh
-*   ok 1: Adding
-*   ok 2: Prioritizing
-* passed all 2 test(s)
-
-Some notes on the session content:
-Blank lines are ignored.
-The output can contain variable elements.
-There is not yet a generic support of the "..." for those parts, only a few by hand:
-- absolute location of todo.txt must be replaced by "...todo.txt"
-- absolute location of todo.sh  must be replaced by "...todo.sh"
-- date yyyy-mm-dd must be replaced by "..."
-- time hh:mm:ss   must be replaced by "..."
-
-See also testsuite_example.txt which is based on the original testsuite of Gina.
-It can be tested as follow:
-$ cat testsuite_example.txt | ./generate-test.awk > testsuite_example.sh
-$ bash testsuite_example.sh
