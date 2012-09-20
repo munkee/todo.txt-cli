@@ -1,6 +1,4 @@
 #!/bin/bash
-# 2009 Matt Brubeck
-# License:  GPL, http://www.gnu.org/copyleft/gpl.html
 case $1 in
 "usage")
   echo "$(basename $0) [BASENAME]"
@@ -9,6 +7,10 @@ case $1 in
   ;;
 *)
   FILE=${2:-todo}.txt
-  $EDITOR "$TODO_DIR/$FILE"
+  if [ -n "$EDITOR" ]; then
+    $EDITOR $TODO_DIR/$FILE
+  else
+    echo "Error: The EDITOR environment variable is not set"
+  fi
   ;;
 esac
