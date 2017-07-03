@@ -6,9 +6,13 @@ case $1 in
   echo "  If BASENAME is not given, defaults to 'todo'."
   ;;
 *)
-  FILE=${2:-todo}.txt
+  if [[ -z $2 ]]; then
+    FILE=$TODO_FILE
+  else
+    FILE=$TODO_DIR/$2.txt
+  fi
   if [ -n "$EDITOR" ]; then
-    $EDITOR $TODO_DIR/$FILE
+    $EDITOR $FILE
   else
     echo "Error: The EDITOR environment variable is not set"
   fi
