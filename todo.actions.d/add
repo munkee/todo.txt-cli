@@ -16,19 +16,21 @@ shift
 
 PRIORITY=false
 DO=false
+TODOLINE="$@"
 if [ x"$1" = x"pri" -o x"$1" = x"p" ] && [[ x"$2" = x[a-zA-Z] ]]; then
     PRIORITY=$2
     shift
     shift
+    TODOLINE="($PRIORITY) $@"
 elif [ x"$1" = x"x" ]; then
     DO=true
     shift
+    TODOLINE="$@"
 fi
 
 # call back to the main script to add
-if "$TODO_SH" command add "$@"; then
+if "$TODO_SH" command add "$TODOLINE"; then
     # figure out the line of what we just added, and "do" it
     line=`sed -n '$ =' "$TODO_FILE"`
-    [ $PRIORITY != false ] && "$TODO_SH" command pri "$line" $PRIORITY
     $DO && "$TODO_SH" command do "$line"
 fi
