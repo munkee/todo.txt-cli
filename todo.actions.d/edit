@@ -1,18 +1,32 @@
 #!/bin/bash
 case $1 in
 "usage")
-  echo "$(basename $0) [BASENAME]"
-  echo "  Open \$TODO_DIR/BASENAME.txt in \$EDITOR."
-  echo "  If BASENAME is not given, defaults to 'todo'."
+  echo "$(basename $0) [FILENAME]"
+  echo "  Open \$TODO_DIR/FILENAME in \$EDITOR."
+  echo "  If FILENAME is not given, defaults to your todo file."
+  echo " "
+  echo "If \$TODOTXT_VI_LINENUM_EDITOR is true"
+  echo "$(basename $0) (LINENUM) [FILENAME]"
+  echo "  Open to the line number given. defaults to your todo file."
   ;;
 *)
+  if [ "$2" -eq "$2" ] 2>/dev/null; then # $2 is a number
+    if [ -n "$TODOTXT_VI_LINENUM_EDITOR" ]; then
+      LINENUM=$2
+      shift
+    fi
+  fi
   if [[ -z $2 ]]; then
-    FILE=$TODO_FILE
+    FILE="$TODO_FILE"
   else
-    FILE=$TODO_DIR/$2.txt
+    FILE="$TODO_DIR/$2"
   fi
   if [ -n "$EDITOR" ]; then
-    $EDITOR $FILE
+    if [ -n "$LINENUM" ]; then
+      $EDITOR "+$LINENUM" "$FILE"
+    else
+      $EDITOR "$FILE"
+    fi
   else
     echo "Error: The EDITOR environment variable is not set"
   fi
